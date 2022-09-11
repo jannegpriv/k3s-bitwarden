@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  labels:
+    app: bitwarden
+  name: bitwarden-data-claim
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "managed-nfs-storage-bitwarden"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 15Gi
+---

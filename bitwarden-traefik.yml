@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: bitwarden
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - host: bitwarden.k3s.nu
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: bitwarden
+          servicePort: bitwarden-http
+  tls:
+  - hosts:
+    - bitwarden.k3s.nu
+    secretName: bitwarden-k3s-nu-tls
